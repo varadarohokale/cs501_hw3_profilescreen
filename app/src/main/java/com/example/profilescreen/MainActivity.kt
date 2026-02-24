@@ -15,6 +15,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.foundation.shape.RoundedCornerShape
 import com.example.profilescreen.ui.theme.ProfileScreenTheme
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.zIndex
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,93 +39,104 @@ fun ProfileScreen() {
 
     Box(
         modifier = Modifier
-            .fillMaxWidth()
+            .fillMaxSize()
             .background(Color(0xFFFDF6F0))
     ) {
-
-        Column(modifier = Modifier.fillMaxWidth()) {
-
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(300.dp)
+                .statusBarsPadding()
+        ) {
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(160.dp)
+                    .height(170.dp)
                     .background(HeaderBackground)
+                    .align(Alignment.TopCenter)
+                    .zIndex(0f)
             )
-
-            Card(
+            Box(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 24.dp)
-                    .offset(y = (-8).dp),
-                shape = RoundedCornerShape(16.dp),
-                elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
-                colors = CardDefaults.cardColors(containerColor = CardBackground)
+                    .align(Alignment.BottomCenter)
+                    .zIndex(1f)
             ) {
-                Column(
+                Card(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(top = 52.dp, bottom = 20.dp, start = 20.dp, end = 20.dp),
-                    horizontalAlignment = Alignment.CenterHorizontally
+                        .offset(y = 20.dp),
+                    shape = RoundedCornerShape(16.dp),
+                    elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
+                    colors = CardDefaults.cardColors(containerColor = CardBackground)
                 ) {
-
-                    Text(
-                        text = "Varada",
-                        style = MaterialTheme.typography.titleLarge,
-                        color = AccentColor
-                    )
-
-                    Spacer(modifier = Modifier.height(4.dp))
-
-                    Text(
-                        text = "Software Engineer",
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = Color(0xFF8A6355)
-                    )
-
-                    Spacer(modifier = Modifier.height(20.dp))
-
-                    Button(
-                        onClick = { },
-                        modifier = Modifier.fillMaxWidth(),
-                        shape = RoundedCornerShape(12.dp),
-                        colors = ButtonDefaults.buttonColors(containerColor = AccentColor)
-                    ) {
-                        Text("Edit Profile", color = Color.White)
-                    }
-
-                    Spacer(modifier = Modifier.height(12.dp))
-
-                    HorizontalDivider(color = Color(0xFFE8D5CC))
-
-                    Spacer(modifier = Modifier.height(12.dp))
-                    
-                    Surface(
+                    Column(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .aspectRatio(5f),
-                        color = SubtleBackground,
-                        shape = RoundedCornerShape(10.dp)
+                            .padding(top = 56.dp, bottom = 20.dp, start = 20.dp, end = 20.dp),
+                        horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-                        Box(contentAlignment = Alignment.Center) {
-                            Text(
-                                text = "Boston, MA",
-                                style = MaterialTheme.typography.bodySmall,
-                                color = Color(0xFF8A6355)
-                            )
+                        Text(
+                            text = "Varada",
+                            style = MaterialTheme.typography.titleLarge,
+                            color = AccentColor
+                        )
+
+                        Spacer(modifier = Modifier.height(4.dp))
+
+                        Text(
+                            text = "Software Engineer",
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = Color(0xFF8A6355)
+                        )
+
+                        Spacer(modifier = Modifier.height(20.dp))
+
+                        Button(
+                            onClick = { },
+                            modifier = Modifier.fillMaxWidth(),
+                            shape = RoundedCornerShape(12.dp),
+                            colors = ButtonDefaults.buttonColors(containerColor = AccentColor)
+                        ) {
+                            Text("Edit Profile", color = Color.White)
+                        }
+
+                        Spacer(modifier = Modifier.height(12.dp))
+
+                        HorizontalDivider(color = Color(0xFFE8D5CC))
+
+                        Spacer(modifier = Modifier.height(12.dp))
+
+                        Surface(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .aspectRatio(5f),
+                            color = SubtleBackground,
+                            shape = RoundedCornerShape(10.dp)
+                        ) {
+                            Box(contentAlignment = Alignment.Center) {
+                                Text(
+                                    text = "Boston, MA",
+                                    style = MaterialTheme.typography.bodySmall,
+                                    color = Color(0xFF8A6355)
+                                )
+                            }
                         }
                     }
                 }
+
+                Box(
+                    modifier = Modifier
+                        .size(90.dp)
+                        .align(Alignment.TopCenter)
+                        .offset(y = (-10).dp)  
+                        .clip(CircleShape)
+                        .background(AvatarColor)
+                        .zIndex(2f)
+                )
             }
         }
-
-        Box(
-            modifier = Modifier
-                .size(90.dp)
-                .align(Alignment.TopCenter)
-                .offset(y = 115.dp)
-                .clip(CircleShape)
-                .background(AvatarColor)
-        )
     }
 }
 
